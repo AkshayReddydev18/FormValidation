@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form Validation</title>
+  </head>
+  <style>
+    form{
+      background-image: url(backimage.jpg);
+      height: 215px;
+      width: 300px;
+    }
+  </style>
+  <body>
+    <!-- action="https://formsubmit.co/poddukuriakshyreddy@gmail.com" method="post" -->
+    <form id="form">
+      <fieldset>
+        <legend><b>Form Validation</b></legend>
+        <label for="fname">First Name:</label>
+        <input type="text" id="fname" /><br />
+        <span id="sp1"> </span>
+        <br />
+        <label for="lname">Last Name:</label>
+        <input type="text" id="lname" /><br />
+        <span id="sp2"></span>
+        <br />
+        <label for="rollno">Roll No:</label>
+        <input type="text" id="rollno" /><br />
+        <!-- <span id="sp3" style="display: none">20Q91A11233</span><br /> -->
+        <span id="sp3"></span><br />
+
+        <label for="mobile">Mobile:</label>
+        <input type="number" id="mobile"  pattern="(0-9){10}"/><br />
+        <span id="sp4"></span><br />
+        <input type="reset">
+
+        <input type="submit" />
+      </fieldset>
+    </form>
+
+    <script>
+      let form = document.getElementById("form");
+      let fname = document.getElementById("fname");
+
+      let rollno=document.getElementById("rollno");
+      let mobile=document.getElementById("mobile");
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        if (fname.value == "") {
+          fname.style.border = "2px solid red";
+          sp1.style.color = "red";
+          sp1.innerHTML = "fill th field";
+        }
+        if (lname.value == "" ) {
+          lname.style.border = "2px solid red";
+          sp2.style.color = "red";
+          sp2.innerHTML = "fill th field";
+        }
+        if(lname.value.includes() == Number){
+          sp2.innerHTML="number should not be included";
+          sp2.style.color="red"
+        }
+        if (rollno.value == "") {
+          rollno.style.border = "2px solid red";
+          sp3.style.color = "red";
+          sp3.innerHTML = "fill the field";
+        }
+        if (mobile.value == "") {
+          mobile.style.border = "2px solid red";
+          sp4.style.color = "red";
+          sp4.innerHTML = "fill the mobile number";
+        }
+        if (mobile.value.length !== 10) {
+          mobile.style.border = "2px solid red";
+          sp4.style.color = "red";
+          sp4.innerHTML = "enter a valid number";
+        }
+
+        let pattern=/^20Q91A[0-9]{4}$/;
+        let matched=pattern.test(rollno.value)
+        if(matched==true){
+        sp3.innerHTML=matched;
+        sp3.style.color="green";
+        }else{
+        rollno.style.border="2px solid red";
+        sp3.innerHTML=matched;
+        sp3.style.color="red";
+         }
+        
+
+      });
+    </script>
+  </body>
+</html>
